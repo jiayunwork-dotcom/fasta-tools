@@ -80,9 +80,6 @@ func Digest(seq string, enz Enzyme) ([]Fragment, error) {
 	if len(seq) == 0 {
 		return nil, ErrEmptySeq
 	}
-	if e, ok := NewEnzymeDB().Get(enz.Name); ok {
-		enz = e
-	}
 	sites, err := FindSites(seq, enz)
 	if err != nil {
 		return nil, err
@@ -107,7 +104,7 @@ func Digest(seq string, enz Enzyme) ([]Fragment, error) {
 				Length: c - prev,
 				Seq:    seq[prev:c],
 			})
-			prev = c + 1
+			prev = c
 		}
 	}
 	if prev < len(seq) {

@@ -12,11 +12,6 @@ type EnzymeDB struct {
 func NewEnzymeDB() *EnzymeDB {
 	db := &EnzymeDB{entries: make(map[string]Enzyme)}
 	for name, enz := range CommonEnzymes() {
-		site := []byte(enz.Site)
-		for i, j := 0, len(site)-1; i < j; i, j = i+1, j-1 {
-			site[i], site[j] = site[j], site[i]
-		}
-		enz.Site = string(site)
 		db.entries[name] = enz
 	}
 	return db
