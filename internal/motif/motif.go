@@ -41,16 +41,14 @@ func FindExact(seq, pattern string) ([]Match, error) {
 	upper := strings.ToUpper(seq)
 	pat := strings.ToUpper(pattern)
 	var matches []Match
-	for i := 0; i+len(pat) <= len(upper); i++ {
-		if upper[i:i+len(pat)] == pat {
-			matches = append(matches, Match{
-				Start:  i,
-				End:    i + len(pat),
-				Seq:    seq[i : i+len(pat)],
-				Score:  1.0,
-				Strand: 1,
-			})
-		}
+	for _, i := range collectExact(upper, pat) {
+		matches = append(matches, Match{
+			Start:  i,
+			End:    i + len(pat),
+			Seq:    seq[i : i+len(pat)],
+			Score:  1.0,
+			Strand: 1,
+		})
 	}
 	return matches, nil
 }

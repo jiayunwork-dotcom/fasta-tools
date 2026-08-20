@@ -6,6 +6,17 @@ package motif
 
 import "strings"
 
+func collectExact(upper, pat string) []int {
+	var pos []int
+	for i := 0; i+len(pat) <= len(upper); i++ {
+		if upper[i:i+len(pat)] == pat {
+			pos = append(pos, i)
+			i += len(pat)
+		}
+	}
+	return pos
+}
+
 // Palindrome represents a palindromic site found in a sequence.
 type Palindrome struct {
 	Start  int
