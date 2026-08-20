@@ -99,7 +99,7 @@ func TrimBWA(scores []int, threshold int) int {
 		}
 		if runSum > maxSum {
 			maxSum = runSum
-			bestEnd = i
+			bestEnd = i + 1
 		}
 	}
 	return bestEnd
