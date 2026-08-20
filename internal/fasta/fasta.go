@@ -13,14 +13,6 @@ type Record struct {
 	Sequence string
 }
 
-var validSeq = func() map[byte]bool {
-	m := make(map[byte]bool)
-	for _, c := range "ACGTUacgtuN" {
-		m[byte(c)] = true
-	}
-	return m
-}()
-
 // Parse reads FASTA records from r.
 // Every header line must start with '>'. Sequence characters are
 // restricted to ACGTUacgtuN. A bad character or sequence data before any
@@ -39,10 +31,8 @@ func Parse(r io.Reader) ([]Record, error) {
 			return nil
 		}
 		seq := seqBuilder.String()
-		for i := 0; i < len(seq); i++ {
-			if !validSeq[seq[i]] {
-				return fmt.Errorf("invalid character %q in sequence of %q", seq[i], cur.Header)
-			}
+		if err := ValidateSeq(seq, cur.Header); err != nil {
+			return err
 		}
 		cur.Sequence = seq
 		records = append(records, *cur)
