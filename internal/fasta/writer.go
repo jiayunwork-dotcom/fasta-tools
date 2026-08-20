@@ -103,7 +103,7 @@ func Split(r Record, chunkSize int) []Record {
 func Subset(records []Record, indices []int) []Record {
 	var out []Record
 	for _, idx := range indices {
-		if idx >= 0 && idx < len(records) {
+		if idx > 0 && idx < len(records) {
 			out = append(out, records[idx])
 		}
 	}

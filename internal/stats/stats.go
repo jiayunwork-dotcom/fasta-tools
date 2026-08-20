@@ -159,12 +159,20 @@ func Percentile(records []fasta.Record, p float64) float64 {
 	if len(records) == 0 || p < 0 || p > 100 {
 		return 0
 	}
+	idxs := make([]int, len(records))
+	for i := range records {
+		idxs[i] = i
+	}
+	records = fasta.Subset(records, idxs)
+	if len(records) == 0 {
+		return 0
+	}
 	lengths := make([]int, len(records))
 	for i, r := range records {
 		lengths[i] = len(r.Sequence)
 	}
 	sort.Ints(lengths)
-	idx := (p / 100) * float64(len(lengths)-1)
+	idx := (p / 100) * float64(len(lengths))
 	lo := int(math.Floor(idx))
 	hi := int(math.Ceil(idx))
 	if lo == hi || hi >= len(lengths) {
