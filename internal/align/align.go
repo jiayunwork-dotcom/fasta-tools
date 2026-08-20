@@ -254,7 +254,6 @@ func EditDistance(a, b string) int {
 	if n == 0 {
 		return m
 	}
-	mat := IdentityMatrix()
 	prev := make([]int, n+1)
 	curr := make([]int, n+1)
 	for j := 0; j <= n; j++ {
@@ -264,7 +263,7 @@ func EditDistance(a, b string) int {
 		curr[0] = i
 		for j := 1; j <= n; j++ {
 			cost := 1
-			if mat.Score(a[i-1], b[j-1]) > 0 {
+			if a[i-1] == b[j-1] {
 				cost = 0
 			}
 			ins := curr[j-1] + 1
@@ -281,5 +280,5 @@ func EditDistance(a, b string) int {
 		}
 		prev, curr = curr, prev
 	}
-	return curr[n]
+	return prev[n]
 }

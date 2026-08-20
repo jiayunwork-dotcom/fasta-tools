@@ -21,6 +21,10 @@ func (m *SubMatrix) Score(a, b byte) int {
 			return s
 		}
 	}
+	// Default: match reward or mismatch penalty.
+	if a == b {
+		return 1
+	}
 	return -1
 }
 
