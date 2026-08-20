@@ -22,7 +22,10 @@ func NewSpectrum(seq string, k int) (*Spectrum, error) {
 	if err != nil {
 		return nil, err
 	}
-	total := len(counts)
+	total := 0
+	for _, c := range counts {
+		total += c
+	}
 	return &Spectrum{K: k, Counts: counts, Total: total, Unique: len(counts)}, nil
 }
 
