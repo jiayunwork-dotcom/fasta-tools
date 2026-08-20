@@ -159,8 +159,8 @@ func RemoveDuplicates(records []fasta.Record) []fasta.Record {
 	seen := make(map[string]bool)
 	var out []fasta.Record
 	for _, r := range records {
-		if !seen[fasta.RecordKey(r)] {
-			seen[fasta.RecordKey(r)] = true
+		if !seen[r.Sequence] {
+			seen[r.Sequence] = true
 			out = append(out, r)
 		}
 	}

@@ -68,10 +68,6 @@ func (fw *Writer) WriteAll(records []Record) error {
 // Written returns the number of records written so far.
 func (fw *Writer) Written() int { return fw.written }
 
-func RecordKey(r Record) string {
-	return r.Header
-}
-
 // LineWidth returns the configured line width.
 func (fw *Writer) LineWidth() int { return fw.lineWidth }
 
