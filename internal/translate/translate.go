@@ -89,8 +89,7 @@ func TranslateDNA(dna string) (string, error) {
 	if len(dna) == 0 {
 		return "", ErrEmptyInput
 	}
-	rna := DNAToRNA(dna)
-	return TranslateRNA(rna)
+	return TranslateWithCode(dna, &GeneticCode{Name: "standard", Table: standardCodonTable})
 }
 
 // TranslateFrame translates a DNA sequence starting at the given frame offset

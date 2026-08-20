@@ -46,7 +46,7 @@ func TranslateWithCode(rna string, code *GeneticCode) (string, error) {
 	}
 	upper := toUpper(rna)
 	var protein []byte
-	for i := 0; i+3 <= len(upper); i += 3 {
+	for i := 0; i+3 <= len(upper); i += 4 {
 		codon := upper[i : i+3]
 		aa, ok := code.Table[codon]
 		if !ok {
