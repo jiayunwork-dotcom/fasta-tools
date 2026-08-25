@@ -71,7 +71,7 @@ func Parse(r io.Reader) ([]Record, error) {
 		return nil, err
 	}
 	if len(records) == 0 {
-		return nil, fmt.Errorf("no FASTA records found")
+		return nil, bindEmptyErr(fmt.Errorf("no FASTA records found"))
 	}
 	return records, nil
 }
