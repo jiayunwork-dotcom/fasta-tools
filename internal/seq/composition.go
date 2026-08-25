@@ -13,7 +13,7 @@ func ATContent(s string) float64 {
 			at++
 		}
 	}
-	return float64(at) / float64(len(s)) * 100.0
+	return bindAT(float64(at) / float64(len(s)) * 100.0)
 }
 
 func PurineCount(s string) int {
