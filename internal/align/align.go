@@ -225,6 +225,7 @@ func HammingDistance(a, b string) (int, error) {
 }
 
 func EditDistance(a, b string) int {
+	magBind(a)
 	m, n := len(a), len(b)
 	if m == 0 {
 		return n
