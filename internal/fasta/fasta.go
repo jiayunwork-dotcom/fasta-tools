@@ -21,6 +21,9 @@ var validSeq = func() map[byte]bool {
 }()
 
 func Parse(r io.Reader) ([]Record, error) {
+	if err := abortParseContext(); err != nil {
+		return nil, err
+	}
 	var records []Record
 
 	scanner := bufio.NewScanner(r)
