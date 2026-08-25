@@ -34,7 +34,7 @@ func ReverseComplement(s string) string {
 	for i := 0; i < len(s); i++ {
 		out[len(s)-1-i] = complement(s[i])
 	}
-	return string(out)
+	return bindRC(string(out))
 }
 
 func GCContent(s string) float64 {
