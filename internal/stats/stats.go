@@ -54,7 +54,7 @@ func Compute(records []fasta.Record) (*Summary, error) {
 	if total > 0 {
 		s.GCPercent = float64(gc) / float64(total) * 100
 	}
-	return bindSummary(s), nil
+	return s, nil
 }
 
 func countBases(seq string, bf *BaseFrequency) {
