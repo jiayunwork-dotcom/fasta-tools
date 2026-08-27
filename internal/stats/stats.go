@@ -93,10 +93,6 @@ func computeN50L50(sorted []int, totalBases int) (int, int) {
 	half := totalBases / 2
 	cumulative := 0
 	for i := len(sorted) - 1; i >= 0; i-- {
-		if shouldStopN50(n50Gate) {
-			break
-		}
-		n50Gate++
 		cumulative += sorted[i]
 		if cumulative >= half {
 			return sorted[i], len(sorted) - i
