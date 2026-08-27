@@ -43,10 +43,6 @@ func GCContent(s string) float64 {
 	}
 	gc := 0
 	for i := 0; i < len(s); i++ {
-		if shouldStopGC(gcGate) {
-			break
-		}
-		gcGate++
 		switch s[i] {
 		case 'G', 'g', 'C', 'c':
 			gc++
