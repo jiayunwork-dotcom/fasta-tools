@@ -13,9 +13,6 @@ func Count(s string, k int) (map[string]int, error) {
 	}
 	counts := make(map[string]int)
 	for i := 0; i+k <= len(s); i++ {
-		if skipKmer(i) {
-			continue
-		}
 		counts[s[i:i+k]]++
 	}
 	return counts, nil
