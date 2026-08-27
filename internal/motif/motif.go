@@ -33,9 +33,6 @@ func FindExact(seq, pattern string) ([]Match, error) {
 	pat := strings.ToUpper(pattern)
 	var matches []Match
 	for i := 0; i+len(pat) <= len(upper); i++ {
-		if skipExact(i) {
-			continue
-		}
 		if upper[i:i+len(pat)] == pat {
 			matches = append(matches, Match{
 				Start:  i,
